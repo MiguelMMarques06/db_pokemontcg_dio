@@ -1,0 +1,25 @@
+CREATE VIEW view_cards_details AS
+SELECT 
+    c.id AS cardId,
+    c.hp AS cardHP,
+    c.name AS cardName,
+    t.typeName AS cardType,
+    s.stageName AS cardStage,
+    c.info AS cardInfo,
+    c.attack AS cardAttack,
+    c.damage AS cardDamage,
+    c.weak AS cardWeakness,
+    c.resistence AS cardResistance,
+    c.retreat AS cardRetreat,
+    c.cardNumberInCollection AS cardNumber,
+    col.collectionSetName AS collectionName,
+    col.releaseDate AS collectionReleaseDate,
+    col.totalCardsInCollection AS totalCollectionCards
+FROM 
+    tbl_cards c
+LEFT JOIN 
+    tbl_types t ON c.typeId = t.id
+LEFT JOIN 
+    tbl_stages s ON c.stageId = s.id
+LEFT JOIN 
+    tbl_collections col ON c.collectionId = col.id;
